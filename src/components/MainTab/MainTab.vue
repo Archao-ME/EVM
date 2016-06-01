@@ -38,9 +38,10 @@ export default {
   width:$mainTabWidth;
   background-color: $wetAsphalt;
   overflow:scroll;
+  flex-grow:0;
 }
 .head-wrapper{
-  position: fixed;;;
+  position: fixed;
   z-index: 1;
   box-shadow:0px 3px 10px rgba(0, 0, 0, 0.5);
   background-color: $midNightBlue;

@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <window-button></window-button>
-    <main-tab></main-tab>
-    <main-work>
-    </main-work>
+    <div class="main-tab">
+      <main-tab></main-tab>
+    </div>
+    <div class="main-work">
+      <main-work></main-work>
+    </div>
   </div>
 </template>
 
@@ -24,8 +27,14 @@ export default {
 @import "./assets/css/base.scss";
 @import "./assets/css/baseColor.scss";
 #app {
+  display: flex;
   height: 100vh;
   width: 100%;
   overflow:hidden;
+}
+.main-work{
+  flex:1;
+  overflow: scroll;
+  background-color: $clouds;
 }
 </style>
