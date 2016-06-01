@@ -33,13 +33,6 @@ export default {
 <style lang="scss">
 @import "../../assets/css/baseColor.scss";
 @import "../../assets/css/base.scss";
-#main-tab {
-  height: 100%;
-  width:$mainTabWidth;
-  background-color: $wetAsphalt;
-  overflow:scroll;
-  flex-grow:0;
-}
 .head-wrapper{
   position: fixed;
   z-index: 1;

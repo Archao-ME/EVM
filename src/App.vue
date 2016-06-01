@@ -26,11 +26,18 @@ export default {
 <style lang="scss">
 @import "./assets/css/base.scss";
 @import "./assets/css/baseColor.scss";
+.main-tab {
+  width:$mainTabWidth;
+  background-color: $wetAsphalt;
+}
 #app {
   display: flex;
   height: 100vh;
   width: 100%;
   overflow:hidden;
+}
+.main-tab{
+  overflow:scroll;
 }
 .main-work{
   flex:1;
