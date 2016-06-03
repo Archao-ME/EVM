@@ -12,7 +12,6 @@
         <search-input></search-input>
       </div>
     </div>
-
     <div class="item-list-wrapper">
       <item-list v-for="item in 10"></item-list>
     </div>

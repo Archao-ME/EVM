@@ -14,7 +14,6 @@
 import MainTab from './components/MainTab/MainTab'
 import MainWork from './components/MainWork/MainWork'
 import WindowButton from './components/WindowButton/WindowButton'
-
 export default {
   components: {
     WindowButton,
