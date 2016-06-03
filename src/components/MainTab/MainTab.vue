@@ -4,8 +4,8 @@
       <main-button></main-button>
       <div class="type-list">
         <ul>
-          <li><p>图库</p></li>
-          <li><p>文库</p></li>
+          <li><p v-on:click="changeTab('PicList')">图库</p></li>
+          <li><p v-on:click="changeTab('ArticleList')">文库</p></li>
         </ul>
       </div>
       <div class="search">
@@ -23,7 +23,9 @@ import MainButton from '../WindowButton/MainButton'
 import SearchInput from '../WindowButton/SearchInput'
 import PicList from './PicList'
 import ArticleList from './ArticleList'
+
 import {currentTab} from '../../vuex/getters'
+import {changeTab} from '../../vuex/action'
 export default {
   components: {
     MainButton,
@@ -34,6 +36,9 @@ export default {
   vuex: {
     getters: {
       currentTab: currentTab
+    },
+    actions: {
+      changeTab
     }
   }
 }
