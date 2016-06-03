@@ -13,19 +13,28 @@
       </div>
     </div>
     <div class="item-list-wrapper">
-      <item-list v-for="item in 10"></item-list>
+      <components :is="currentTab">
+      </components>
     </div>
   </div>
 </template>
 <script>
 import MainButton from '../WindowButton/MainButton'
 import SearchInput from '../WindowButton/SearchInput'
-import ItemList from './ItemList'
+import PicList from './PicList'
+import ArticleList from './ArticleList'
+import {currentTab} from '../../vuex/getters'
 export default {
   components: {
     MainButton,
     SearchInput,
-    ItemList
+    PicList,
+    ArticleList
+  },
+  vuex: {
+    getters: {
+      currentTab: currentTab
+    }
   }
 }
 </script>

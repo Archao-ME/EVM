@@ -9,17 +9,18 @@
     </div>
   </div>
 </template>
-
 <script>
 import MainTab from './components/MainTab/MainTab'
 import MainWork from './components/MainWork/MainWork'
 import WindowButton from './components/WindowButton/WindowButton'
+import store from './vuex/store'
 export default {
   components: {
     WindowButton,
     MainTab,
     MainWork
-  }
+  },
+  store
 }
 </script>
 <style lang="scss">
