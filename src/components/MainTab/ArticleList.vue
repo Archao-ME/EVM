@@ -6,6 +6,7 @@
   import {article} from '../../vuex/getters'
   import {changeArticle} from '../../vuex/action'
   import itemWrapper from '../ItemWrapper'
+  //TODO: 通过nodejs 获取文件夹内的MD文件列表填充为 articlelist
   export default {
     components: {
       itemWrapper

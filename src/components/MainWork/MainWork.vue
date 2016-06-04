@@ -4,7 +4,8 @@
   </div>
 </template>
 <script>
-import {currentArticle} from '../../vuex/getters'
+  import {currentArticle} from '../../vuex/getters'
+  //TODO: node打开MD文件后填充进入Markdown组件
   export default {
     vuex: {
       getters: {
