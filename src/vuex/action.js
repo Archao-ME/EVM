@@ -1,6 +1,9 @@
-export {changeTab,handleDrop,handleDragover,handleDragleave}
+export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle}
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
+}
+function changeArticle ({dispatch}, index) {
+  dispatch('CHANGEARTICLE', index)
 }
 function handleDrop ({ dispatch }, e, picOptions) {
   var fileList = e.dataTransfer.files
@@ -11,7 +14,7 @@ function handleDrop ({ dispatch }, e, picOptions) {
       e.percent = ~~((e.loaded / e.total) * 100)
       dispatch('ONPROGRESS', e.percent)
     },
-    onLoad: e => dispatch('ONCOMPLETED', e, picOptions),
+    onLoad: e => dispatch('ONCOMPLETED', JSON.parse(e.srcElement.response), picOptions),
     onError: e => dispatch('ONERROR', e),
     onAbort: e => dispatch('ONABORT', e),
   }

@@ -8,18 +8,23 @@ const state = {
     name: 'This is a wonderful world',
     description: 'Wonderful definition, excellent; great; marvelous: We all had a wonderful weekend',
     pic: []
+  },{
+    id: 1,
+    name: 'This il world',
+    description: 'Wonderful definition, excellent; great; marvelous: We all had a wonderful weekend',
+    pic: []
+  },{
+    id: 1,
+    name: 'This is a wonderful world',
+    description: 'Wllent; great; marvelous: We all had a wonderful weekend',
+    pic: []
   }],
   picList: [{
     name: 'A good pic',
     img: 'http://vuejs.org.cn/images/logo.png'
-  }, {
-    name: 'A good pic',
-    img: 'http://vuejs.org.cn/images/logo.png'
-  }, {
-    name: 'A good pic',
-    img: 'http://vuejs.org.cn/images/logo.png'
   }],
   currentTab: 'PicList',
+  currentArticle: 0,
   uploadObj: {
     uploadPercent: 0,
     dragOver: false,
@@ -33,6 +38,9 @@ const state = {
 }
 
 export const mutations = {
+  CHANGEARTICLE (state, index) {
+    state.currentArticle = index
+  },
   /**
    * [main tab change,pic or article list]
    * @param  {[type]} state [description]
@@ -41,6 +49,9 @@ export const mutations = {
    */
   CHANGETAB (state, type) {
     state.currentTab = type
+  },
+  ADDARTICLE (state, article) {
+    state.articleList.push(article)
   },
   ONPROGRESS (state, percent) {
     state.uploadObj.uploadPercent = percent
@@ -51,14 +62,14 @@ export const mutations = {
    * @param {[type]} e          [description]
    * @param {[type]} picOptions [图床配置，前缀、后缀、token获取地址]
    */
-  ONCOMPLETED (state, e, {exURL, suURL, action, tokenURL}) {
-    let file = JSON.parse(e.srcElement.response)
+  ONCOMPLETED (state, response, {exURL, suURL, action, tokenURL}) {
+    let file = response
     if(file.key){
-      state.picList.push({name: file.key, img: exURL + file.key + suURL})
+      let item = {name: file.key, img: exURL + file.key + suURL}
+      state.picList.push(item)
     }else{
       alert('上传失败')
     }
-    state.uploadObj.dragOver = false
   },
   ONERROR (state, msg) {
     console.log(msg)

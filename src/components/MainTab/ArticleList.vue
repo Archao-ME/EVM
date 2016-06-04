@@ -1,8 +1,10 @@
 <template>
-<item-wrapper v-for="item in articleList" :with-thumb=false :item="item"></item-wrapper>
+<item-wrapper v-for="item in articleList" :with-thumb=false :item="item" v-on:click="changeArticle($index)"></item-wrapper>
 </template>
 <script>
   import {articleList} from '../../vuex/getters'
+  import {article} from '../../vuex/getters'
+  import {changeArticle} from '../../vuex/action'
   import itemWrapper from '../ItemWrapper'
   export default {
     components: {
@@ -11,6 +13,9 @@
     vuex: {
       getters: {
         articleList: articleList
+      },
+      actions: {
+        changeArticle
       }
     }
   }
