@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @drop="handleDrop($event, picOptions)" @dragover="handleDragover">
     <window-button></window-button>
     <div class="main-tab">
       <main-tab></main-tab>
@@ -13,14 +13,24 @@
 import MainTab from './components/MainTab/MainTab'
 import MainWork from './components/MainWork/MainWork'
 import WindowButton from './components/WindowButton/WindowButton'
-import store from './vuex/store'
+import {handleDrop,handleDragover,handleDragleave} from './vuex/action'
+import {picOptions} from './vuex/getters'
 export default {
   components: {
     WindowButton,
     MainTab,
     MainWork
   },
-  store
+  vuex: {
+    actions: {
+      handleDrop,
+      handleDragover,
+      handleDragleave
+    },
+    getters: {
+      picOptions: picOptions
+    }
+  }
 }
 </script>
 <style lang="scss">

@@ -4,8 +4,8 @@
       <main-button></main-button>
       <div class="type-list">
         <ul>
-          <li><p v-on:click="changeTab('PicList')">图库</p></li>
-          <li><p v-on:click="changeTab('ArticleList')">文库</p></li>
+          <li v-on:click="changeTab('PicList')"><p>图库</p></li>
+          <li v-on:click="changeTab('ArticleList')"><p>文库</p></li>
         </ul>
       </div>
       <div class="search">
