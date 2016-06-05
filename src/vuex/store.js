@@ -7,7 +7,7 @@ const state = {
     id: 1,
     name: 'This is a wonderful world',
     description: 'Wonderful definition, excellent; great; marvelous: We all had a wonderful weekend',
-    pic: []
+    content: '这是markdown原生内容。'
   }],
   picList: [{
     name: 'A good pic',
@@ -39,8 +39,13 @@ export const mutations = {
   INITARTICLE (state, articleList){
     state.articleList = articleList
   },
-  CHANGEARTICLE (state, index) {
-    state.currentArticle = index
+  /**
+   * 改变文章对象
+   * @param {[type]} state [description]
+   * @param {[type]} item  [description]
+   */
+  CHANGEARTICLE (state, item) {
+    state.currentArticle = item
   },
   /**
    * [main tab change,pic or article list]

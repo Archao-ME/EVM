@@ -1,16 +1,19 @@
 <template>
   <div id="main-work">
-    <textarea>
-      {{ currentArticle.content }}
+    <textarea v-model="currentArticle.content">
     </textarea>
   </div>
 </template>
 <script>
   import {currentArticle,articleList} from '../../vuex/getters'
-  //TODO: node打开MD文件后填充进入Markdown组件
+
+  //TODO: 一段时间后保存
   export default {
     created: function(){
       console.log('MainWork created')
+    },
+    data: {
+      content: ''
     },
     vuex: {
       getters: {

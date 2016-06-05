@@ -1,15 +1,20 @@
 export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticle}
 
+
+//MAKRDOWN editor
+// function updateArticle ({ dispatch }, value) {
+//   dispatch('UPDATEARTICLE', value)
+// }
 //MAINTAB code block
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
 }
+
+//TODO: 切换时保存
 function changeArticle ({dispatch}, item) {
   dispatch('CHANGEARTICLE', item)
 }
-function editorText ({dispatch}, text) {
-  dispatch('EDITORTEXT', text)
-}
+
 function initArticle({dispatch}, files) {
   dispatch('INITARTICLE', files)
 }
