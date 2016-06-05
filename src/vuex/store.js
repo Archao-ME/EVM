@@ -14,7 +14,10 @@ const state = {
     img: 'http://vuejs.org.cn/images/logo.png'
   }],
   currentTab: 'PicList',
-  currentArticle: 0,
+  currentArticle: {
+    index: 0,
+    content: ''
+  },
   uploadObj: {
     uploadPercent: 0,
     dragOver: false,

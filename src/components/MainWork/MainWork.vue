@@ -1,22 +1,21 @@
 <template>
   <div id="main-work">
     <textarea>
-      {{ currentArticle }}
+      {{ currentArticle.content }}
     </textarea>
   </div>
 </template>
 <script>
-  import {currentArticle} from '../../vuex/getters'
+  import {currentArticle,articleList} from '../../vuex/getters'
   //TODO: node打开MD文件后填充进入Markdown组件
   export default {
-    data: function () {
-      return {
-        xx: 'xx'
-      }
+    created: function(){
+      console.log('MainWork created')
     },
     vuex: {
       getters: {
-        currentArticle
+        currentArticle,
+        articleList
       }
     }
   }

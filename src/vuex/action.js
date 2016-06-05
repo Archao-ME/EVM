@@ -1,13 +1,11 @@
 export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticle}
 
-
-
 //MAINTAB code block
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
 }
-function changeArticle ({dispatch}, index) {
-  dispatch('CHANGEARTICLE', index)
+function changeArticle ({dispatch}, item) {
+  dispatch('CHANGEARTICLE', item)
 }
 function editorText ({dispatch}, text) {
   dispatch('EDITORTEXT', text)
