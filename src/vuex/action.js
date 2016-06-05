@@ -1,4 +1,8 @@
-export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle}
+export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticle}
+
+
+
+//MAINTAB code block
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
 }
@@ -8,6 +12,10 @@ function changeArticle ({dispatch}, index) {
 function editorText ({dispatch}, text) {
   dispatch('EDITORTEXT', text)
 }
+function initArticle({dispatch}, files) {
+  dispatch('INITARTICLE', files)
+}
+//MAIN code block
 function handleDrop ({ dispatch }, e, picOptions) {
   var fileList = e.dataTransfer.files
   dispatch('ONDROP', fileList)

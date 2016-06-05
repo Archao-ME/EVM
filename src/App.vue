@@ -13,19 +13,27 @@
 import MainTab from './components/MainTab/MainTab'
 import MainWork from './components/MainWork/MainWork'
 import WindowButton from './components/WindowButton/WindowButton'
-import {handleDrop,handleDragover,handleDragleave} from './vuex/action'
+import {handleDrop,handleDragover,handleDragleave,initArticle} from './vuex/action'
 import {picOptions} from './vuex/getters'
+import { getMDFile } from './elect/ipc'
+
 export default {
   components: {
     WindowButton,
     MainTab,
     MainWork
   },
+  created: function () {
+    getMDFile().then(articleList => {
+      this.initArticle(articleList)
+    })
+  },
   vuex: {
     actions: {
       handleDrop,
       handleDragover,
-      handleDragleave
+      handleDragleave,
+      initArticle
     },
     getters: {
       picOptions: picOptions

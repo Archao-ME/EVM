@@ -1,16 +1,22 @@
 {
   "name": "electron-vue-markdown",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "EVM",
   "author": "Jesusalexander <brpoper@gmail.com>",
   "private": true,
+  "main": "electron.entry.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "elec": "electron ./ ",
+    "elec-build": "electron-packager . --ignore=node_modules --ignore=build --ignore=EVImg-* --ignore=.git EVImg --platform=darwin --arch=x64 --overwrite",
+    "elec-build-win": "electron-packager . --ignore=node_modules --ignore=EVImg-* --ignore=build --ignore=.git EVImg --platform=win32 --arch=x64 --overwrite",
+    "elec-asar": "asar pack ./EVImg-darwin-x64/EVImg.app/Contents/Resources/app ./EVImg-darw64/EVImg.app/Contents/Resources/app.asar && rm -rf ./EVImg-darwin-x64/EVImg.app/Contents/Resources/app",
+    "elec-asar-win": "asar pack ./EVImg-win32-x64/Resources/app .//EVImg-win32-x64/Resources/app.asar && rm -rf ./EVImg-win32-x64/Resources/app"
   },
   "dependencies": {
     "vue": "^1.0.21",
@@ -27,7 +33,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "cross-spawn": "^2.1.5",
     "css-loader": "^0.23.0",
-    "electron-prebuilt": "^1.2.0",
+    "electron-prebuilt": "^1.2.1",
     "eslint": "^2.0.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-friendly-formatter": "^1.2.2",

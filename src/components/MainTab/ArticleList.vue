@@ -2,8 +2,7 @@
 <item-wrapper v-for="item in articleList" :with-thumb=false :item="item" v-on:click="changeArticle($index)"></item-wrapper>
 </template>
 <script>
-  import {articleList} from '../../vuex/getters'
-  import {article} from '../../vuex/getters'
+  import {articleList,article} from '../../vuex/getters'
   import {changeArticle} from '../../vuex/action'
   import itemWrapper from '../ItemWrapper'
   //TODO: 通过nodejs 获取文件夹内的MD文件列表填充为 articlelist
@@ -16,7 +15,7 @@
         articleList: articleList
       },
       actions: {
-        changeArticle
+        changeArticle,
       }
     }
   }

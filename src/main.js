@@ -7,5 +7,5 @@ Vue.use(VueResource)
 new Vue({
   el: 'body',
   components: { App },
-  store,
+  store
 })

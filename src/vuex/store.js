@@ -8,16 +8,6 @@ const state = {
     name: 'This is a wonderful world',
     description: 'Wonderful definition, excellent; great; marvelous: We all had a wonderful weekend',
     pic: []
-  },{
-    id: 1,
-    name: 'This il world',
-    description: 'Wonderful definition, excellent; great; marvelous: We all had a wonderful weekend',
-    pic: []
-  },{
-    id: 1,
-    name: 'This is a wonderful world',
-    description: 'Wllent; great; marvelous: We all had a wonderful weekend',
-    pic: []
   }],
   picList: [{
     name: 'A good pic',
@@ -38,6 +28,14 @@ const state = {
 }
 
 export const mutations = {
+  /**
+   * INIT ARTICLE LIST from ipcRenderer
+   * @param {[type]} state [description]
+   * @param {[type]} files [description]
+   */
+  INITARTICLE (state, articleList){
+    state.articleList = articleList
+  },
   CHANGEARTICLE (state, index) {
     state.currentArticle = index
   },
