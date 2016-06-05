@@ -5,6 +5,9 @@ function changeTab ({ dispatch }, type) {
 function changeArticle ({dispatch}, index) {
   dispatch('CHANGEARTICLE', index)
 }
+function editorText ({dispatch}, text) {
+  dispatch('EDITORTEXT', text)
+}
 function handleDrop ({ dispatch }, e, picOptions) {
   var fileList = e.dataTransfer.files
   dispatch('ONDROP', fileList)
