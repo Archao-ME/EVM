@@ -16,7 +16,8 @@ const state = {
   currentTab: 'PicList',
   currentArticle: {
     index: 0,
-    content: ''
+    content: '',
+    name: ''
   },
   uploadObj: {
     uploadPercent: 0,
@@ -32,21 +33,20 @@ const state = {
 
 export const mutations = {
   /**
-   * INIT ARTICLE LIST from ipcRenderer
+   * INIT ARTICLES LIST from ipcRenderer
    * @param {[type]} state [description]
    * @param {[type]} files [description]
    */
-  INITARTICLE (state, articleList){
+  INITARTICLES (state, articleList){
     state.articleList = articleList
-    state.currentArticle = articleList[0]
   },
   /**
    * 改变文章对象
    * @param {[type]} state [description]
-   * @param {[type]} item  [description]
+   * @param {[type]} index  articleList的序列
    */
-  CHANGEARTICLE (state, item) {
-    state.currentArticle = item
+  CHANGEARTICLE (state, index) {
+    state.currentArticle = state.articleList[index]
   },
   /**
    * [main tab change,pic or article list]

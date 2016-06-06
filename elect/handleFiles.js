@@ -26,5 +26,9 @@ function writeMDFile (fileName, content, callback){
     callback(err,'success')
   })
 }
-
-module.exports = {readMDFiles, writeMDFile}
+function readMDFile (fileName, callback){
+  fs.readFile(fileName, function (err, data) {
+     callback(err,data)
+  })
+}
+module.exports = {readMDFiles, writeMDFile,readMDFile}

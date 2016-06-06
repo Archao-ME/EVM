@@ -1,5 +1,5 @@
-export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticle}
-import {writeMDFile} from '../elect/ipc'
+export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticles}
+import {writeMDFile, readMDFile, getMDFiles} from '../elect/ipc'
 //MAKRDOWN editor
 // function updateArticle ({ dispatch }, value) {
 //   dispatch('UPDATEARTICLE', value)
@@ -8,20 +8,51 @@ import {writeMDFile} from '../elect/ipc'
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
 }
-//TODO: 切换时保存
-function changeArticle ({dispatch, state}, item) {
+
+/**
+ * [切换保存文件，读取切换的文件内容并填入item.content]
+ * @param  {[type]} {dispatch [description]
+ * @param  {[type]} state}    [description]
+ * @param  {[type]} item      [store 中列表的 item，内容为 {name:String}]
+ * @return {[type]}           [description]
+ */
+function changeArticle ({dispatch, state}, item, index) {
+  readMDFile(item.name).then(msg => {
+    if(msg === 'error'){
+      window.alert('读取文件错误')
+    }else{
+      item.content = msg
+      item.index = index
+      dispatch('CHANGEARTICLE', index)
+    }
+  },msg => {
+    window.alert('读取文件错误')
+  })
   var fileItem = {
     name: state.currentArticle.name,
     content: state.currentArticle.content
   }
+  //TODO: 判读是否修改。若有修改再保存
   writeMDFile(fileItem).then(msg => {
     console.log(msg,fileItem)
   })
-  dispatch('CHANGEARTICLE', item)
 }
-
-function initArticle({dispatch}, files) {
-  dispatch('INITARTICLE', files)
+/**
+ * 初始化列表，获取mdfils文件夹下的所有md文件
+ * @param  {[type]} {dispatch} [description]
+ * @return {[type]}            [description]
+ */
+function initArticles({dispatch}) {
+  getMDFiles().then(files => {
+    dispatch('INITARTICLES', files)
+  })
+}
+function initArticle({dispatch, state}, index) {
+  let articleItem = state.articleList[index]
+  readMDFile(articleItem.name).then( result =>{
+    state.articleList[index].content = result
+    dispatch('CHANGEARTICLE', index)
+  })
 }
 //MAIN code block
 function handleDrop ({ dispatch }, e, picOptions) {

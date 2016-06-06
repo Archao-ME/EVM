@@ -1,5 +1,5 @@
 <template>
-<item-wrapper v-for="item in articleList" :with-thumb=false :item="item" v-on:click="changeArticle(item)"></item-wrapper>
+<item-wrapper v-for="item in articleList" track-by="$index" :with-thumb=false :item="item" v-on:click="changeArticle(item,$index)"></item-wrapper>
 </template>
 <script>
   import {articleList,article} from '../../vuex/getters'
