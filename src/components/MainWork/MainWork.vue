@@ -12,9 +12,6 @@
     created: function(){
       console.log('MainWork created')
     },
-    data: {
-      content: ''
-    },
     vuex: {
       getters: {
         currentArticle,

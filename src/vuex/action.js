@@ -1,6 +1,5 @@
 export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticle}
-
-
+import {writeMDFile} from '../elect/ipc'
 //MAKRDOWN editor
 // function updateArticle ({ dispatch }, value) {
 //   dispatch('UPDATEARTICLE', value)
@@ -9,9 +8,15 @@ export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initAr
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
 }
-
 //TODO: 切换时保存
-function changeArticle ({dispatch}, item) {
+function changeArticle ({dispatch, state}, item) {
+  var fileItem = {
+    name: state.currentArticle.name,
+    content: state.currentArticle.content
+  }
+  writeMDFile(fileItem).then(msg => {
+    console.log(msg,fileItem)
+  })
   dispatch('CHANGEARTICLE', item)
 }
 

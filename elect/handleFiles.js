@@ -21,7 +21,10 @@ function readMDFiles (callback) {
     }
   })
 }
-
-module.exports = {
-  readMDFiles
+function writeMDFile (fileName, content, callback){
+  fs.writeFile(fileName, content, (err)=> {
+    callback(err,'success')
+  })
 }
+
+module.exports = {readMDFiles, writeMDFile}

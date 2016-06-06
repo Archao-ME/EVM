@@ -38,6 +38,7 @@ export const mutations = {
    */
   INITARTICLE (state, articleList){
     state.articleList = articleList
+    state.currentArticle = articleList[0]
   },
   /**
    * 改变文章对象
