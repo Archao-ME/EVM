@@ -33,7 +33,7 @@ export const mutations = {
   ONPROGRESS (state, index, e) {
     e.percent = ~~((e.loaded / e.total) * 100)
     if(state.uploadObj.length - 1 < index ){
-      stat.uploadObj[index] = { progress: 0}
+      state.uploadObj.push({ progress: 0})
     }
     state.uploadObj[index].progress = e.percent
   },

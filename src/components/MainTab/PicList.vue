@@ -1,5 +1,5 @@
 <template>
-  <loading-bar v-for="item in uploadObj" :progress="item.progress" v-show="item.progress"></loading-bar>
+  <loading-bar v-for="item in uploadObj" :progress="item.progress" ></loading-bar>
   <item-wrapper v-for="item in picList" :with-thumb=true :item="item" @click = "testUploadObj"></item-wrapper>
 </template>
 <script>

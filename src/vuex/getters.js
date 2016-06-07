@@ -17,6 +17,3 @@ function currentArticle (state, index) {
 function uploadObj (state) {
   return state.uploadObj
 }
-function uploadObjItem (state, index) {
-  return state.uploadObj[index]
-}

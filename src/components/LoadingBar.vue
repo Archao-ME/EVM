@@ -1,6 +1,7 @@
 <template>
-  <div class="item-wrapper">
-    {{ progress }}
+  <div class="item-wrapper" v-show="progress" transition="expand">
+    <div v-bind:style="{width: progress + '%',height:'100%',backgroundColor:'#fff', backgroundImage: 'repeating-linear-gradient( 45deg, #2980b9, #2980b9 30px, #3498db 30px, #3498db 60px )'}">
+    </div>
     <div class="info-wrapper">
     </div>
   </div>
@@ -19,10 +20,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../assets/css/baseColor.scss";
+.expand-transition {
+  transition: all .3s ease;
+  height: 70px;
+}
+/* .expand-enter 定义进入的开始状态 */
+.expand-enter {
+  height: 70px;
+}
+/* .expand-leave 定义离开的结束状态 */
+.expand-leave {
+  height: 0;
+  opacity: 0;
+}
 .item-wrapper{
-  background-color: $midNightBlue;
   width: 100%;
-  height: 90px;
   display: flex;
   flex-direction: row;
 }
