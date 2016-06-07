@@ -24,7 +24,7 @@ export default {
     MainWork
   },
   created: function () {
-    // this.initArticles()
+    this.initArticles()
   },
   vuex: {
     actions: {

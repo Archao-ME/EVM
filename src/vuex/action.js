@@ -1,5 +1,5 @@
 export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticles}
-// import {writeMDFile, readMDFile, getMDFiles} from '../elect/ipc'
+import {writeMDFile, readMDFile, getMDFiles} from '../elect/ipc'
 //MAKRDOWN editor
 
 //MAINTAB code block
