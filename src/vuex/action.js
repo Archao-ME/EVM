@@ -52,19 +52,19 @@ function initArticle({dispatch, state}, index) {
     dispatch('CHANGEARTICLE', index)
   })
 }
-//MAIN code block
+/**
+ * 处理文件拖拽上传
+ * @param  {[type]} {          dispatch      [description]
+ * @param  {[type]} state      }             [description]
+ * @param  {[type]} e          拖拽事件
+ * @param  {[type]} picOptions 图床配置
+ * @return {[type]}            [description]
+ */
 function handleDrop ({ dispatch,state }, e, picOptions) {
   let fileList = e.dataTransfer.files
   let fileArr = Array.prototype.slice.call(fileList)
   dispatch('ONDROP', true)
   e.preventDefault()
-  //TODO: 改写onProgress，只传入e,在 mutations 中生成多进度条
-  // let handleEvents = {
-  //   onProgress: e => {dispatch('ONPROGRESS', e)},
-  //   onLoad: e => dispatch('ONCOMPLETED', JSON.parse(e.srcElement.response), picOptions),
-  //   onError: e => dispatch('ONERROR', e),
-  //   onAbort: e => dispatch('ONABORT', e),
-  // }
   this.$http.get(picOptions.tokenURL).then(response => {
     for(let file of fileArr){
       _uploadXHR(picOptions.action, file, response.data.body)
@@ -99,8 +99,7 @@ function handleDrop ({ dispatch,state }, e, picOptions) {
     XHR.send(formData)
   }
 }
-
-
+//TODO: 拖拽过程中显示上传指引图标
 function handleDragover ({ dispatch }, e) {
   dispatch('ONDRAGOVER', true)
   e.preventDefault()
@@ -110,25 +109,4 @@ function handleDragleave ({ dispatch }, e) {
   e.preventDefault()
 }
 function handleUpload ({dispatch}, e) {
-}
-
-/**
- * [XHR 上传模块]
- * @param  {[type]} action       [服务器地址]
- * @param  {[type]} data         [表单数据]
- * @param  {[type]} handleEvents [回调函数]
- * @return {[type]}              [description]
- */
-function _uploadXHR(action, data, {onProgress, onLoad, onError, onAbort}) {
-  let formData = new window.FormData()
-  let XHR = new window.XMLHttpRequest()
-  for(let item in data) {
-    formData.append(item, data[item])
-  }
-  XHR.upload.addEventListener('progress', onProgress , false)
-  XHR.addEventListener('load', onLoad, false)
-  XHR.addEventListener('error', onError , false)
-  XHR.addEventListener('abort', onAbort, false)
-  XHR.open('POST', action)
-  XHR.send(formData)
 }

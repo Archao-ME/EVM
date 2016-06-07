@@ -14,7 +14,6 @@
   </div>
 </template>
 <script>
-//TODO: 添加Loading progress样式和参数输入
 //TODO: 缩略图预览
 export default {
   props: {
