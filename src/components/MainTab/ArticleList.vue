@@ -3,7 +3,7 @@
 </template>
 <script>
   import {articleList,article} from '../../vuex/getters'
-  import {changeArticle} from '../../vuex/action'
+  // import {changeArticle} from '../../vuex/action'
   import itemWrapper from '../ItemWrapper'
   export default {
     components: {
@@ -14,7 +14,7 @@
         articleList: articleList
       },
       actions: {
-        changeArticle,
+        // changeArticle,
       }
     }
   }

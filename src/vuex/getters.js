@@ -1,4 +1,4 @@
-export {currentTab,picList,articleList,picOptions,currentArticle}
+export {currentTab,picList,articleList,picOptions,currentArticle,uploadObj}
 function currentTab (state) {
   return state.currentTab
 }
@@ -13,4 +13,10 @@ function picOptions (state) {
 }
 function currentArticle (state, index) {
   return state.currentArticle
+}
+function uploadObj (state) {
+  return state.uploadObj
+}
+function uploadObjItem (state, index) {
+  return state.uploadObj[index]
 }

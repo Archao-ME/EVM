@@ -1,9 +1,7 @@
 export {changeTab,handleDrop,handleDragover,handleDragleave,changeArticle,initArticles}
-import {writeMDFile, readMDFile, getMDFiles} from '../elect/ipc'
+// import {writeMDFile, readMDFile, getMDFiles} from '../elect/ipc'
 //MAKRDOWN editor
-// function updateArticle ({ dispatch }, value) {
-//   dispatch('UPDATEARTICLE', value)
-// }
+
 //MAINTAB code block
 function changeTab ({ dispatch }, type) {
   dispatch('CHANGETAB', type)
@@ -55,30 +53,54 @@ function initArticle({dispatch, state}, index) {
   })
 }
 //MAIN code block
-function handleDrop ({ dispatch }, e, picOptions) {
-  var fileList = e.dataTransfer.files
-  dispatch('ONDROP', fileList)
+function handleDrop ({ dispatch,state }, e, picOptions) {
+  let fileList = e.dataTransfer.files
+  let fileArr = Array.prototype.slice.call(fileList)
+  dispatch('ONDROP', true)
   e.preventDefault()
-  let handleEvents = {
-    onProgress: e => {
-      e.percent = ~~((e.loaded / e.total) * 100)
-      dispatch('ONPROGRESS', e.percent)
-    },
-    onLoad: e => dispatch('ONCOMPLETED', JSON.parse(e.srcElement.response), picOptions),
-    onError: e => dispatch('ONERROR', e),
-    onAbort: e => dispatch('ONABORT', e),
-  }
+  //TODO: 改写onProgress，只传入e,在 mutations 中生成多进度条
+  // let handleEvents = {
+  //   onProgress: e => {dispatch('ONPROGRESS', e)},
+  //   onLoad: e => dispatch('ONCOMPLETED', JSON.parse(e.srcElement.response), picOptions),
+  //   onError: e => dispatch('ONERROR', e),
+  //   onAbort: e => dispatch('ONABORT', e),
+  // }
   this.$http.get(picOptions.tokenURL).then(response => {
-    let formData = {
-      'Content-Type': 'multipart/form-data',
-      'file': fileList[0],
-      'key': fileList[0].name,
-      'token': response.data.body
+    for(let file of fileArr){
+      _uploadXHR(picOptions.action, file, response.data.body)
     }
-    _uploadXHR.apply(this,[picOptions.action, formData, handleEvents])
   })
-
+  /**
+   * [_uploadXHR description]
+   * @param  {[type]} action [description]
+   * @param  {[type]} file   [description]
+   * @param  {[type]} token  [description]
+   * @return {[type]}        [description]
+   */
+  function _uploadXHR(action, file, token){
+    let fileName = file.name
+    let index = state.onProgressIndex++
+    let data = {
+      'Content-Type': 'multipart/form-data',
+      'file': file,
+      'key': file.name,
+      'token': token
+    }
+    let formData = new window.FormData()
+    let XHR = new window.XMLHttpRequest()
+    for(let item in data) {
+      formData.append(item, data[item])
+    }
+    XHR.upload.addEventListener('progress', e => {dispatch('ONPROGRESS',index,e)} , false)
+    XHR.addEventListener('load', e => dispatch('ONCOMPLETED', JSON.parse(e.srcElement.response),index,picOptions), false)
+    XHR.addEventListener('error', e => dispatch('ONERROR',index, e) , false)
+    XHR.addEventListener('abort', e => dispatch('ONABORT',index, e), false)
+    XHR.open('POST', action)
+    XHR.send(formData)
+  }
 }
+
+
 function handleDragover ({ dispatch }, e) {
   dispatch('ONDRAGOVER', true)
   e.preventDefault()

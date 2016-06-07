@@ -1,16 +1,25 @@
 <template>
-<item-wrapper v-for="item in picList" :with-thumb=true :item="item"></item-wrapper>
+  <loading-bar v-for="item in uploadObj" :progress="item.progress" v-show="item.progress"></loading-bar>
+  <item-wrapper v-for="item in picList" :with-thumb=true :item="item" @click = "testUploadObj"></item-wrapper>
 </template>
 <script>
-  import {picList} from '../../vuex/getters'
+  import {picList, uploadObj} from '../../vuex/getters'
   import itemWrapper from '../ItemWrapper'
+  import loadingBar from '../LoadingBar'
   export default {
     components: {
-      itemWrapper
+      itemWrapper,
+      loadingBar
     },
     vuex: {
       getters: {
-        picList: picList
+        picList,
+        uploadObj
+      },
+      actions: {
+        testUploadObj: function({dispatch, state}){
+          dispatch('CHANGEUPLOADOBJ', 1)
+        }
       }
     }
   }
