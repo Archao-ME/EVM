@@ -15,6 +15,10 @@ export const mutations = {
   CHANGEARTICLE (state, index) {
     state.currentArticle = state.articleList[index]
   },
+  EDITEARTICLE (state, content) {
+    console.log(content)
+    state.currentArticle.content = content
+  },
   /**
    * [main tab change,pic or article list]
    * @param  {[type]} state [description]
