@@ -43,7 +43,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../assets/css/baseColor.scss";
 @import "../../assets/css/base.scss";
 .head-wrapper{

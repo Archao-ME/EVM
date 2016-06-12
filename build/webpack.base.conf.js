@@ -24,6 +24,9 @@ module.exports = {
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
   },
+  node: {
+    fs: "empty"
+  },
   module: {
     // preLoaders: [
     //   {
