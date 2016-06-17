@@ -1,49 +1,36 @@
 <template>
-  <div id="markdown-preview">
-    {{{ content | marked }}}
+  <div id="editor">
+    <textarea v-editor></textarea>
   </div>
 </template>
-
 <script>
-import marked from 'marked'
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: true,
-  sanitize: true,
-  smartLists: true,
-  smartypants: true
-})
+// import marked from 'marked'
+import SimpleMDE from '../../SimpleMDE/js/simplemde'
 export default {
-  props: {
-    content: {
-      type: String
-    }
-  },
-  filters: {
-    marked: function (value) {
-      var renderer = new marked.Renderer()
-      renderer.heading = function (text, level) {
-        var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-        return '<h' + level + '><a name="' +
-                      escapedText +
-                       '" class="anchor" href="#' +
-                       escapedText +
-                       '"><span class="header-link"></span></a>' +
-                        text + '</h' + level + '>';
+  directives : {
+    editor: {
+      bind: function() {
+        var simplemde = new SimpleMDE({
+            element: this.el
+          }
+        )
       }
-      return marked(value, { renderer: renderer })
     }
   }
 }
 </script>
 
-<style lang="scss" >
-@import "../../assets/css/markdown.scss";
-#markdown-preview {
-  background: #ccc;
-}
+<style lang="scss">
+@import '../../SimpleMDE/css/simplemde';
+// textarea,#editor {
+//   margin: 0;
+//   height: 100%;
+//   width: 100%;
+//   border: 0;
+//   font-size: 16px;
+//   flex:1;
+// }
+// textarea:focus {
+//   outline: 0;
+// }
 </style>
